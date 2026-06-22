@@ -75,7 +75,7 @@ curl -X 'PATCH' \
   }
 }'
 
-№№№№ Нахождение путей по email
+#### Нахождение путей по email
 
 curl -X 'GET' \
   'http://127.0.0.1:8000/submitData/?user__email=alexey%40test.ru' \
