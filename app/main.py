@@ -13,7 +13,6 @@ async def startup():
     """Подключаемся к базе данных и создаем таблицы при запуске."""
     await database.connect()
 
-    # --- Создаем таблицы, если их нет ---
     engine = sqlalchemy.create_engine(str(database.url))
     metadata.create_all(engine)
 
@@ -31,9 +30,9 @@ async def shutdown():
     responses={
         400: {"model": ErrorResponse},
         500: {"model": ErrorResponse}
-    },  # <--- ЗАКРЫВАЮЩАЯ СКОРБУКА
+    },
 )
-async def submit_data(request_data: SubmitDataIn):  # <--- НА ТОЙ ЖЕ СТОЛБЦЕ
+async def submit_data(request_data: SubmitDataIn):
     try:
         new_id = await add_pass(request_data.dict())
         return SubmitDataOut(id=new_id)
@@ -72,7 +71,6 @@ async def patch_pass(pass_id: int, updated_data: PartialSubmitDataIn):
     allowed_fields.pop("user_info", None)
 
     # 5. Используем SQLAlchemy для построения запроса
-    # Это безопасный и кросс-базовый способ
     update_query = (
         passes.update()
         .where(passes.c.id == pass_id)

@@ -1,0 +1,7 @@
+FROM postgres:latest
+
+ENV POSTGRES_USER=fst_user
+ENV POSTGRES_PASSWORD=12345
+ENV POSTGRES_DB=mountains_db
+
+EXPOSE 5433

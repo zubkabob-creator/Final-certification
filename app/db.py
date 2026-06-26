@@ -2,6 +2,7 @@ import json
 import databases
 import sqlalchemy
 from sqlalchemy.sql import func
+from sqlalchemy.orm import sessionmaker
 
 # --- 1. Подключение к БД ---
 from .config import settings
@@ -10,6 +11,9 @@ DATABASE_URL = f"postgresql://{settings.DB_LOGIN}:{settings.DB_PASS}@{settings.D
 
 database = databases.Database(DATABASE_URL)
 metadata = sqlalchemy.MetaData()
+
+sync_engine = sqlalchemy.create_engine(DATABASE_URL)
+SyncSession = sessionmaker(bind=sync_engine)
 
 # --- 2. Определение структуры таблицы (Модели) ---
 passes = sqlalchemy.Table(
@@ -39,7 +43,7 @@ async def add_pass(data: dict) -> int:
         longitude=data["longitude"],
         altitude_m=data["altitude_m"],
         photos=data["photos"],
-        user_info=data["user_info"],
+        user_info=json.dumps(data["user_info"]),
         status='new'
     )
     last_record_id = await database.execute(query)
