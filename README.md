@@ -82,5 +82,59 @@ curl -X 'GET' \
   -H 'accept: application/json'
 
 
+#### Запуск в Docker
+
+1.  **Создайте Dockerfile:**
+    ```dockerfile
+    FROM postgres:latest
+    ENV POSTGRES_USER=fst_user
+    ENV POSTGRES_PASSWORD=password
+    ENV POSTGRES_DB=mountains_db
+    EXPOSE 5433
+    ```
+
+2.  **Соберите образ:**
+    ```bash
+    docker build -t postgres-for-tests .
+    ```
+
+3.  **Запустите контейнер:**
+    ```bash
+    docker run -p 5433:5432 postgres-for-tests
+    ```
+
+4.  **Проверьте порт:**
+    ```powershell
+    netstat -ano | findstr :5433
+    ```
+
+
+#### Тестирование
+
+1.  **Установите зависимости:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+2.  **Запустите тесты:**
+    ```bash
+    pytest tests/
+    ```
+
+3.  **Проверьте покрытие:**
+    ```bash
+    coverage run -m pytest
+    coverage report
+    ```
+
+
+#### Swagger UI
+
+![Swagger UI](./docs/swagger-ui.png)
+
+#### OpenAPI Specification
+
+![OpenAPI](./docs/openapi-spec.png)
+
 <img width="1438" height="1125" alt="swagger-ui" src="https://github.com/user-attachments/assets/9921b180-dc95-4aa4-b648-5cfd4e69e894" />
 <img width="3439" height="253" alt="openapi-spec" src="https://github.com/user-attachments/assets/efae2166-39c3-4b4f-9161-8c7b40f089b2" />
