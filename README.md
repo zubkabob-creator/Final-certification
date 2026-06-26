@@ -130,11 +130,8 @@ curl -X 'GET' \
 
 #### Swagger UI
 
-![Swagger UI](https://raw.githubusercontent.com/zubkabob-creator/Final-сertification/main/docs/swagger-ui.png)
+<img width="1438" height="1125" alt="swagger-ui" src="https://github.com/user-attachments/assets/9921b180-dc95-4aa4-b648-5cfd4e69e894" />
 
 #### OpenAPI Specification
 
-![OpenAPI](./docs/openapi-spec.png)
-
-<img width="1438" height="1125" alt="swagger-ui" src="https://github.com/user-attachments/assets/9921b180-dc95-4aa4-b648-5cfd4e69e894" />
 <img width="3439" height="253" alt="openapi-spec" src="https://github.com/user-attachments/assets/efae2166-39c3-4b4f-9161-8c7b40f089b2" />
