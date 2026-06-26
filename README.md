@@ -130,7 +130,7 @@ curl -X 'GET' \
 
 #### Swagger UI
 
-![Swagger UI](./docs/swagger-ui.png)
+![Swagger UI](https://raw.githubusercontent.com/zubkabob-creator/Final-сertification/main/docs/swagger-ui.png)
 
 #### OpenAPI Specification
 
