@@ -4,3 +4,4 @@ sqlalchemy
 databases[postgresql]
 pydantic
 python-dotenv
+pytest-asyncio

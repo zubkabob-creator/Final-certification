@@ -14,6 +14,12 @@ DATABASE_URL = f"postgresql://" \
                f"@{os.getenv('FSTR_DB_HOST')}:{os.getenv('FSTR_DB_PORT')}" \
                f"/{os.getenv('FSTR_DB_NAME')}"
 
+@pytest_asyncio.fixture(autouse=True)
+async def db_setup():
+    await database.connect()
+    yield
+    await database.disconnect()
+
 @pytest_asyncio.fixture
 async def client():
     client = TestClient(app)
@@ -21,7 +27,7 @@ async def client():
         yield client
 
 @pytest.mark.asyncio
-async def test_full_cycle(client):
+async def test_full_cycle(client, db_setup):
     payload = {
         "name": "Integration Test",
         "latitude": 47.123,
